@@ -65,73 +65,10 @@ src/
 
 ---
 
-## Sample Payout Result
-
-When a payout request is processed, the response will look like:
-
-```json
-{
-  "payoutId": "e2b2ecfb-f205-4d5d-bca9-674f8cebc0fc",
-  "status": "SUCCESS"
-}
-```
-
-- `payoutId`: The unique identifier for the payout.
-- `status`: The result of the payout (`SUCCESS`, `FAILED`, or `PENDING`).
-
----
-
 ## Sample Audit Logs
 
 Each significant state change (wallet debit, payout creation, status update, etc.) generates an audit log entry. Example audit logs:
 
-```json
-[
-  {
-    "id": "0fd3d3a7-2637-47d3-bb3b-2e5f6c34f471",
-    "entityType": "WALLET",
-    "entityId": "w1",
-    "action": "DEBIT",
-    "old_state": {
-      "balance": 1000
-    },
-    "new_state": {
-      "balance": 800
-    },
-    "createdAt": "2026-01-20T14:20:34.837Z"
-  },
-  {
-    "id": "fc131791-e752-419c-8cdc-189ce821b872",
-    "entityType": "PAYOUT",
-    "entityId": "e2b2ecfb-f205-4d5d-bca9-674f8cebc0fc",
-    "action": "CREATED",
-    "old_state": {},
-    "new_state": {
-      "id": "e2b2ecfb-f205-4d5d-bca9-674f8cebc0fc",
-      "merchantId": "merchant1",
-      "amount": 200,
-      "currency": "NGN",
-      "status": "SUCCESS",
-      "idempotencyKey": "abc123",
-      "createdAt": "2026-01-20T14:20:34.837Z",
-      "updatedAt": "2026-01-20T14:20:34.837Z"
-    },
-    "createdAt": "2026-01-20T14:20:34.837Z"
-  },
-  {
-    "id": "1971bbb8-add3-48ee-af87-d489ed210820",
-    "entityType": "PAYOUT",
-    "entityId": "e2b2ecfb-f205-4d5d-bca9-674f8cebc0fc",
-    "action": "SUCCESS",
-    "old_state": {
-      "status": "PENDING"
-    },
-    "new_state": {
-      "status": "SUCCESS"
-    },
-    "createdAt": "2026-01-20T14:20:34.837Z"
-  }
-]
-```
 
-MIT
+**Note:**  
+The payout result and audit logs is printed to the console for demo purpose.
