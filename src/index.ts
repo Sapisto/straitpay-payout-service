@@ -20,6 +20,7 @@ const service = new PayoutService();
     idempotencyKey: 'abc123',
   });
 
+  // Uncommenting the below will simulate an idempotent request
   // const result2 = await service.processPayout({
   //   merchantId: 'merchant1',
   //   amount: 200,
