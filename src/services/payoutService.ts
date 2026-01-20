@@ -1,6 +1,6 @@
 import { Payout } from "../models/payout";
 import { wallets, payouts, auditLogs } from "../utils/db";
-import { v4 as uuidv4 } from "uuid";
+import { randomUUID } from 'crypto';
 
 type PayoutRequest = {
   merchantId: string;
@@ -30,7 +30,7 @@ export class PayoutService {
           );
 
           auditLogs.push({
-            id: uuidv4(),
+            id: randomUUID(),
             entityType: "PAYOUT",
             entityId: payout.id,
             action: "IDEMPOTENCY_HIT",
@@ -61,7 +61,7 @@ export class PayoutService {
       wallet.updatedAt = new Date();
 
       auditLogs.push({
-        id: uuidv4(),
+        id: randomUUID(),
         entityType: "WALLET",
         entityId: wallet.id,
         action: "DEBIT",
@@ -70,7 +70,7 @@ export class PayoutService {
         createdAt: new Date(),
       });
 
-      const payoutId = uuidv4();
+      const payoutId = randomUUID();
       const payout: Payout = {
         id: payoutId,
         merchantId,
@@ -84,7 +84,7 @@ export class PayoutService {
       payouts.set(payoutId, payout);
 
       auditLogs.push({
-        id: uuidv4(),
+        id: randomUUID(),
         entityType: "PAYOUT",
         entityId: payoutId,
         action: "CREATED",
@@ -101,7 +101,7 @@ export class PayoutService {
         console.log(`Payout ${payoutId} completed: ${payout.status}`);
 
         auditLogs.push({
-          id: uuidv4(),
+          id: randomUUID(),
           entityType: "PAYOUT",
           entityId: payoutId,
           action: payout.status,
@@ -116,7 +116,7 @@ export class PayoutService {
         console.log(`Payout ${payoutId} pending due to: ${err.message}`);
 
         auditLogs.push({
-          id: uuidv4(),
+          id: randomUUID(),
           entityType: "PAYOUT",
           entityId: payoutId,
           action: "PENDING",
