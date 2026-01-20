@@ -50,7 +50,7 @@ src/
 
 2. Run the demo  
    ```bash
-   npx ts-node src/index.ts
+   npm start
    ```
 
 ---
