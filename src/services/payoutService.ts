@@ -1,6 +1,4 @@
-import { Wallet } from "../models/wallet";
 import { Payout } from "../models/payout";
-import { AuditLog } from "../models/auditLog";
 import { wallets, payouts, auditLogs } from "../utils/db";
 import { v4 as uuidv4 } from "uuid";
 
