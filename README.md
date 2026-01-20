@@ -50,7 +50,7 @@ src/
 
 2. Run the demo  
    ```bash
-   npm start
+   npm run dev
    ```
 
 ---
